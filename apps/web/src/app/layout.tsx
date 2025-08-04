@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../index.css";
 import Providers from "@/components/providers";
-import Header from "@/components/header";
+import Header1 from "@/components/header";
+import Footer4Col from "@/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,10 +15,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "hausefeed",
-  description: "hausefeed",
-};
+import { buildMetadata } from "@/site.config";
+
+export const metadata: Metadata = buildMetadata();
 
 export default function RootLayout({
   children,
@@ -30,9 +30,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <div className="grid grid-rows-[auto_1fr] h-svh">
-            <Header />
-            {children}
+          <div className="min-h-svh flex flex-col">
+            <Header1 />
+            <main className="flex-1 flex flex-col items-stretch justify-start">
+              <div className="container-wrapper">
+                {children}
+              </div>
+            </main>
+            <Footer4Col />
           </div>
         </Providers>
       </body>
