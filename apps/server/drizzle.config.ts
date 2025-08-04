@@ -1,7 +1,8 @@
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
-  schema: "./src/db/schema",
+  // Use a glob so drizzle-kit can find .ts schema files
+  schema: "./src/db/schema/**/*.ts",
   out: "./src/db/migrations",
   dialect: "turso",
   dbCredentials: {
